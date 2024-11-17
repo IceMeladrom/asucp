@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: sales_predictor
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/sales_predictor
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          time_zone: Europe/Moscow
+  jackson:
+    time-zone: Europe/Moscow
+server:
+  port: 9999
+
+python:
+  api:
+    url: http://localhost:5000/predict # Ссылка на api Python сервера
