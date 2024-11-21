@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Hello!</title>
 </head>
 <body>
+<h1 th:if="${prediction != null}" th:text="${prediction}"></h1>
 <form action="/" method="post">
     <div>
         <label for="startDate">Начальная дата</label>
-        <input id="startDate" type="datetime-local" name="endDate">
+        <input id="startDate" type="date" name="startDate">
     </div>
     <div>
         <label for="endDate">Конечная дата</label>
-        <input id="endDate" type="datetime-local" name="startDate">
+        <input id="endDate" type="date" name="endDate">
     </div>
     <div>
         <label for="warehouseId">ID склада</label>
         <input id="warehouseId" type="text" name="warehouseId">
     </div>
     <div>
-        <label for="productId">ID товара</label>
-        <input id="productId" type="text" name="productId">
+        <label for="product">ID товара</label>
+        <input id="product" type="text" name="product">
     </div>
     <button>Отправить</button>
 </form>

@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 import ru.asucp.sales_predictor.dto.ModelDataDto;
 import ru.asucp.sales_predictor.service.PredictionService;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -26,14 +27,14 @@ public class PredictionController {
     @PostMapping
     public Mono<String> predict(@ModelAttribute ModelDataDto modelDataDto, Model model) {
         Long warehouseId = modelDataDto.getWarehouseId();
-        Long productId = modelDataDto.getProductId();
+        String product = modelDataDto.getProduct();
 
         ZoneId moscowZone = ZoneId.of("Europe/Moscow");
 
-        ZonedDateTime startDate = modelDataDto.getStartDate().atZone(moscowZone);
-        ZonedDateTime endDate = modelDataDto.getEndDate().atZone(moscowZone);
+        LocalDate startDate = modelDataDto.getStartDate();
+        LocalDate endDate = modelDataDto.getEndDate();
 
-        return predictionService.predict(warehouseId, productId, startDate, endDate)
+        return predictionService.predict(warehouseId, product, startDate, endDate)
                 .map(prediction -> {
                     model.addAttribute("prediction", prediction);
                     return "index";
