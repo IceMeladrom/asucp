@@ -20,8 +20,8 @@ public class PredictionService {
         Map<String, Object> requestData = Map.of(
                 "warehouseId", warehouseId,
                 "product", product,
-                "startDate", startDate.toString(),
-                "endDate", endDate.toString()
+                "startDate", startDate.getYear() + "-" + startDate.getDayOfMonth() + "-" + startDate.getMonthValue(),
+                "endDate", endDate.getYear() + "-" + endDate.getDayOfMonth() + "-" + endDate.getMonthValue()
         );
 
         return this.webClient.post()
